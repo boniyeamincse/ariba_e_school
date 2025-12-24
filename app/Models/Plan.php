@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Plan extends Model
+{
+    protected $fillable = [
+        'name',
+        'slug',
+        'price',
+        'duration_months',
+        'description',
+        'features',
+        'is_active',
+        'sort_order',
+    ];
+
+    protected $casts = [
+        'features' => 'array',
+        'is_active' => 'boolean',
+        'price' => 'decimal:2',
+    ];
+}
