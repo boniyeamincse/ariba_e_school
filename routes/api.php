@@ -65,8 +65,19 @@ Route::middleware('auth:sanctum')->group(function () {
     // Academic Sessions
     Route::get('/academic-sessions', [\App\Http\Controllers\AdmissionController::class, 'sessions']);
     Route::post('/academic-sessions', [\App\Http\Controllers\AdmissionController::class, 'createSession']);
+
+    // School Management (Admin)
+    Route::get('/schools/pending', [\App\Http\Controllers\SchoolRegistrationController::class, 'pendingSchools']);
+    Route::get('/schools/{id}', [\App\Http\Controllers\SchoolRegistrationController::class, 'show']);
+    Route::put('/schools/{id}/approve', [\App\Http\Controllers\SchoolRegistrationController::class, 'approve']);
+    Route::put('/schools/{id}/reject', [\App\Http\Controllers\SchoolRegistrationController::class, 'reject']);
+    Route::post('/schools/{id}/upload', [\App\Http\Controllers\SchoolRegistrationController::class, 'uploadFile']);
 });
+
+// Public Routes (No Auth)
+Route::post('/schools/register', [\App\Http\Controllers\SchoolRegistrationController::class, 'register']);
 
 // Webhooks (no auth required)
 Route::post('/webhooks/stripe', [\App\Http\Controllers\PaymentController::class, 'stripeWebhook']);
 Route::post('/webhooks/bkash', [\App\Http\Controllers\PaymentController::class, 'bkashCallback']);
+

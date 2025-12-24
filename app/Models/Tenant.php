@@ -13,8 +13,12 @@ class Tenant extends Model
 
     protected $casts = [
         'config' => 'array',
+        'documents' => 'array',
         'trial_ends_at' => 'datetime',
         'subscription_ends_at' => 'datetime',
+        'approved_at' => 'datetime',
+        'terms_accepted' => 'boolean',
+        'privacy_accepted' => 'boolean',
     ];
 
     protected $appends = ['subscription_status'];
