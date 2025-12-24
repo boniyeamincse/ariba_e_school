@@ -31,6 +31,7 @@ export const MENU_CONFIG: Record<string, MenuItem[]> = {
             submenu: [
                 { title: "All Schools", href: "/admin/dashboard/tenants" },
                 { title: "Plans & Subscriptions", href: "/admin/dashboard/tenants/plans" },
+                { title: "Domains", href: "/admin/dashboard/tenants/domains" },
                 { title: "Tenant Usage", href: "/admin/dashboard/tenants/usage" }
             ]
         },
@@ -39,9 +40,9 @@ export const MENU_CONFIG: Record<string, MenuItem[]> = {
             href: "/admin/dashboard/billing",
             icon: CreditCard,
             submenu: [
+                { title: "Invoices", href: "/admin/dashboard/billing/invoices" },
                 { title: "Transactions", href: "/admin/dashboard/billing/transactions" },
-                { title: "Gateways", href: "/admin/dashboard/billing/gateways" },
-                { title: "Webhook Logs", href: "/admin/dashboard/billing/webhooks" }
+                { title: "Checkout", href: "/admin/dashboard/billing/checkout" }
             ]
         },
         {
@@ -85,6 +86,7 @@ export const MENU_CONFIG: Record<string, MenuItem[]> = {
             submenu: [
                 { title: "All Schools", href: "/admin/dashboard/tenants" },
                 { title: "Plans & Subscriptions", href: "/admin/dashboard/tenants/plans" },
+                { title: "Domains", href: "/admin/dashboard/tenants/domains" },
                 { title: "Tenant Usage", href: "/admin/dashboard/tenants/usage" }
             ]
         },
@@ -93,9 +95,9 @@ export const MENU_CONFIG: Record<string, MenuItem[]> = {
             href: "/admin/dashboard/billing",
             icon: CreditCard,
             submenu: [
+                { title: "Invoices", href: "/admin/dashboard/billing/invoices" },
                 { title: "Transactions", href: "/admin/dashboard/billing/transactions" },
-                { title: "Gateways", href: "/admin/dashboard/billing/gateways" },
-                { title: "Webhook Logs", href: "/admin/dashboard/billing/webhooks" }
+                { title: "Checkout", href: "/admin/dashboard/billing/checkout" }
             ]
         },
         {
@@ -139,6 +141,7 @@ export const MENU_CONFIG: Record<string, MenuItem[]> = {
             submenu: [
                 { title: "All Schools", href: "/admin/dashboard/tenants" },
                 { title: "Plans & Subscriptions", href: "/admin/dashboard/tenants/plans" },
+                { title: "Domains", href: "/admin/dashboard/tenants/domains" },
                 { title: "Tenant Usage", href: "/admin/dashboard/tenants/usage" }
             ]
         },
@@ -163,8 +166,8 @@ export const MENU_CONFIG: Record<string, MenuItem[]> = {
             href: "/admin/dashboard/billing",
             icon: CreditCard,
             submenu: [
+                { title: "Invoices", href: "/admin/dashboard/billing/invoices" },
                 { title: "Transactions", href: "/admin/dashboard/billing/transactions" },
-                { title: "Gateways", href: "/admin/dashboard/billing/gateways" },
             ]
         },
     ],

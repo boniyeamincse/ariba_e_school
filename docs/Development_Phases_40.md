@@ -12,13 +12,13 @@ This document outlines the granular 40-phase development plan for the Ariba SaaS
 | **05** | **SaaS Global Roles** | Implementation of Super Admin, Support, and Finance roles with RBAC. | ✅ **Done** |
 
 ## 🟡 Phase 6-10: SaaS Core & Billing
-| Phase | Module | Description | Status |
-| :--- | :--- | :--- | :--- |
-| **06** | **SaaS Admin Dashboard** | KPI Cards, Tenant List, System Health monitoring UI. | ✅ **Done** |
-| **07** | **Subscription Logic** | Plan creation (Standard/Premium), Trial management (14-day auto-expiry). | ✅ **Done** |
-| **08** | **Billing & Invoicing** | Invoice generation for schools, PDF downloads. | ✅ **Done** |
-| **09** | **Payment Gateway** | bKash/Stripe integration for subscription collections. | ✅ **Done** |
-| **10** | **Domain Management** | Custom domain mapping (e.g., `school.com` -> `school.aribasaas.com`). | ✅ **Done** |
+| Phase | Module | Description | Tests | Status |
+| :--- | :--- | :--- | :---: | :--- |
+| **06** | **SaaS Admin Dashboard** | KPI Cards, Tenant List, System Health monitoring UI. | - | ✅ **Done** |
+| **07** | **Subscription Logic** | Plan creation (Standard/Premium), Trial management (14-day auto-expiry). | 3 ✅ | ✅ **Done** |
+| **08** | **Billing & Invoicing** | Invoice generation for schools, PDF downloads. | 4 ✅ | ✅ **Done** |
+| **09** | **Payment Gateway** | bKash/Stripe integration for subscription collections. | 4 ✅ | ✅ **Done** |
+| **10** | **Domain Management** | Custom domain mapping (e.g., `school.com` -> `school.aribasaas.com`). | 5 ✅ | ✅ **Done** |
 
 ## 🔴 Phase 11-15: Academic Core (School Administration)
 | Phase | Module | Description | Status |
