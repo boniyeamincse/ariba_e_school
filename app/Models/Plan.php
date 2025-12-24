@@ -22,4 +22,8 @@ class Plan extends Model
         'is_active' => 'boolean',
         'price' => 'decimal:2',
     ];
+    public function tenants()
+    {
+        return $this->hasMany(Tenant::class);
+    }
 }

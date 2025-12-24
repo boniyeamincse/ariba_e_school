@@ -4,13 +4,32 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MENU_CONFIG } from "@/lib/menu-config";
 import { ShieldCheck, ChevronDown, ChevronRight, LayoutDashboard, Settings, Users, CreditCard, MessageSquare, Shield, Activity, GraduationCap } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 export function AdminSidebar() {
     const pathname = usePathname();
-    const menuItems = MENU_CONFIG["Super Admin"];
     const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({});
+    const [user, setUser] = useState<any>(null);
+    const [role, setRole] = useState<string>("SAAS_SUPER_ADMIN"); // Default to Super Admin for safety/fallback
+
+    useEffect(() => {
+        // Load user from local storage
+        try {
+            const userData = localStorage.getItem("user");
+            if (userData) {
+                const parsedUser = JSON.parse(userData);
+                setUser(parsedUser);
+                const userRole = parsedUser.roles?.[0]?.name || "SAAS_SUPER_ADMIN";
+                setRole(userRole);
+            }
+        } catch (e) {
+            console.error("Failed to load user data", e);
+        }
+    }, []);
+
+    // Fallback to "SAAS_SUPER_ADMIN" menu if role not found, or handle "Super Admin" legacy case
+    const menuItems = MENU_CONFIG[role] || MENU_CONFIG["SAAS_SUPER_ADMIN"] || MENU_CONFIG["Super Admin"];
 
     const toggleMenu = (title: string) => {
         setOpenMenus(prev => ({ ...prev, [title]: !prev[title] }));
@@ -35,7 +54,7 @@ export function AdminSidebar() {
                 <div className="px-3 mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
                     Platform
                 </div>
-                {menuItems.map((item) => {
+                {menuItems?.map((item) => {
                     const Icon = item.icon;
                     const isActive = pathname === item.href;
                     const hasSubmenu = item.submenu && item.submenu.length > 0;
@@ -109,11 +128,15 @@ export function AdminSidebar() {
             <div className="p-4 border-t border-slate-900 bg-slate-950/50">
                 <div className="group flex items-center gap-3 p-2 rounded-lg hover:bg-slate-900 transition-colors cursor-pointer">
                     <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-indigo-500 to-violet-500 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-900/20 ring-2 ring-slate-900 group-hover:ring-indigo-500/50 transition-all">
-                        SA
+                        {user ? user.name.charAt(0).toUpperCase() : "SA"}
                     </div>
                     <div className="overflow-hidden">
-                        <div className="text-sm font-medium text-white truncate group-hover:text-indigo-400 transition-colors">Super Admin</div>
-                        <div className="text-xs text-slate-500 truncate">super@aribasaas.com</div>
+                        <div className="text-sm font-medium text-white truncate group-hover:text-indigo-400 transition-colors">
+                            {user ? user.name : "Loading..."}
+                        </div>
+                        <div className="text-xs text-slate-500 truncate">
+                            {user ? user.email : "..."}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -28,7 +28,8 @@ class TenantController extends Controller
                 'name' => $validated['name'],
                 'domain' => $validated['domain'],
                 'plan_id' => $validated['plan_id'],
-                'status' => 'active', // Default to active
+                'status' => 'active',
+                'trial_ends_at' => now()->addDays(14),
             ]);
 
             // 2. Create Admin User for this Tenant
@@ -59,5 +60,35 @@ class TenantController extends Controller
     public function index()
     {
         return response()->json(Tenant::withCount('users')->latest()->get());
+    }
+
+    public function usage()
+    {
+        // Mock data for MVP as integrations (S3, SMS) and Student module are in Phase 4
+        // In real implementation, this would aggregate data from related tables
+        $stats = [
+            'storage' => [
+                'used' => '45.5 GB',
+                'limit' => '100 GB',
+                'percentage' => 45.5
+            ],
+            'sms' => [
+                'sent' => 12500,
+                'limit' => 25000,
+                'percentage' => 50
+            ],
+            'students' => [
+                'current' => 450,
+                'limit' => 1000, // Based on 'Standard' plan
+                'percentage' => 45
+            ],
+            'recent_activity' => [
+                ['action' => 'Bulk Import', 'details' => 'Imported 120 students', 'date' => '2 hours ago', 'status' => 'Completed'],
+                ['action' => 'Backup', 'details' => 'Daily database backup', 'date' => '5 hours ago', 'status' => 'Completed'],
+                ['action' => 'SMS Blast', 'details' => 'Exam schedule notification', 'date' => '1 day ago', 'status' => 'Completed'],
+            ]
+        ];
+
+        return response()->json($stats);
     }
 }

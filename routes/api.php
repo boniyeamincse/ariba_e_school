@@ -13,8 +13,17 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Tenant Management
     Route::get('/tenants', [\App\Http\Controllers\TenantController::class, 'index']);
+    Route::get('/tenants/usage', [\App\Http\Controllers\TenantController::class, 'usage']);
     Route::post('/tenants', [\App\Http\Controllers\TenantController::class, 'store']);
 
     // Plans
     Route::get('/plans', [\App\Http\Controllers\PlanController::class, 'index']);
+    Route::post('/plans', [\App\Http\Controllers\PlanController::class, 'store']);
+    Route::put('/plans/{plan}', [\App\Http\Controllers\PlanController::class, 'update']);
+
+    // Invoices
+    Route::get('/invoices', [\App\Http\Controllers\InvoiceController::class, 'index']);
+    Route::post('/invoices', [\App\Http\Controllers\InvoiceController::class, 'store']);
+    Route::post('/invoices/{invoice}/mark-paid', [\App\Http\Controllers\InvoiceController::class, 'markPaid']);
+    Route::get('/invoices/{invoice}/download', [\App\Http\Controllers\InvoiceController::class, 'download']);
 });

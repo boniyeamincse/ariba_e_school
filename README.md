@@ -18,10 +18,13 @@ A multi-tenant, role-based School Management System built for the Bangladeshi ed
 | **School Dashboard** | [http://localhost:3000/dashboard](http://localhost:3000/dashboard) | For Principals/Teachers |
 
 ### 👤 Test Accounts
-| Role | Email | Password | Domain / Context | URL |
+| Role | Email | Password | Context | URL |
 | :--- | :--- | :--- | :--- | :--- |
-| **Super Admin** | `super@app.com` | `password` | Global | [Admin Login](http://localhost:3000/admin/login) |
-| **Principal** | `admin@dhakaideal.com` | `password` | `dhakaideal` | [School Login](http://localhost:3000/login) |
+| **SaaS Owner** | `super@app.com` | `password` | Global | [Admin Login](http://localhost:3000/admin/login) |
+| **SaaS Admin** | `admin@app.com` | `password` | Global | [Admin Login](http://localhost:3000/admin/login) |
+| **SaaS Support** | `support@app.com` | `password` | Global | [Admin Login](http://localhost:3000/admin/login) |
+| **SaaS Finance** | `finance@app.com` | `password` | Global | [Admin Login](http://localhost:3000/admin/login) |
+| **School Admin** | `admin@dhakaideal.com` | `password` | `dhakaideal` | [School Login](http://localhost:3000/login) |
 
 ### 3. Installation
 ```bash
