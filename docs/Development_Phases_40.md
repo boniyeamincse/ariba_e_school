@@ -26,7 +26,8 @@ This document outlines the granular 40-phase development plan for the Ariba SaaS
 | Phase | Module | Description | Tests | Status |
 | :--- | :--- | :--- | :---: | :--- |
 | **11** | **Student Info System** | Detailed student profiles, guardians, document uploads. | 5 ✅ | ✅ **Done** |
-| **12** | **Admission Module** | Online admission forms, inquiry tracking, merit list generation. | - | ⭕ Pending |
+| **12** | **Admission Module** | Online admission forms, inquiry tracking, merit list generation. | 5 ✅ | ✅ **Done** |
+| **13** | **Academic Setup** | Class, Section, Subject, & Topic hierarchy configuration. | - | ⭕ Pending |
 | **13** | **Academic Setup** | Class, Section, Subject, & Topic hierarchy configuration. | ⭕ Pending |
 | **14** | **Class Routine** | Conflict-free schedule generator, teacher allocation. | ⭕ Pending |
 | **15** | **Attendance System** | Daily attendance (Student/Staff), Biometric device API integration. | ⭕ Pending |

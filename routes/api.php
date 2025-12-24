@@ -48,6 +48,23 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/students/{student}/guardians', [\App\Http\Controllers\StudentController::class, 'addGuardian']);
     Route::post('/students/{student}/documents', [\App\Http\Controllers\StudentController::class, 'uploadDocument']);
     Route::post('/students/{student}/photo', [\App\Http\Controllers\StudentController::class, 'uploadPhoto']);
+
+    // Admissions
+    Route::get('/admissions', [\App\Http\Controllers\AdmissionController::class, 'index']);
+    Route::post('/admissions', [\App\Http\Controllers\AdmissionController::class, 'store']);
+    Route::get('/admissions/{admission}', [\App\Http\Controllers\AdmissionController::class, 'show']);
+    Route::put('/admissions/{admission}/status', [\App\Http\Controllers\AdmissionController::class, 'updateStatus']);
+    Route::post('/admissions/{admission}/enroll', [\App\Http\Controllers\AdmissionController::class, 'enroll']);
+    Route::get('/admissions/merit-list', [\App\Http\Controllers\AdmissionController::class, 'meritList']);
+
+    // Admission Inquiries
+    Route::get('/admission-inquiries', [\App\Http\Controllers\AdmissionController::class, 'inquiries']);
+    Route::post('/admission-inquiries', [\App\Http\Controllers\AdmissionController::class, 'createInquiry']);
+    Route::put('/admission-inquiries/{inquiry}', [\App\Http\Controllers\AdmissionController::class, 'updateInquiry']);
+
+    // Academic Sessions
+    Route::get('/academic-sessions', [\App\Http\Controllers\AdmissionController::class, 'sessions']);
+    Route::post('/academic-sessions', [\App\Http\Controllers\AdmissionController::class, 'createSession']);
 });
 
 // Webhooks (no auth required)
