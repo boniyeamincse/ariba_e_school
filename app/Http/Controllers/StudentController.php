@@ -41,8 +41,8 @@ class StudentController extends Controller
         }
 
         // Filter by class
-        if ($class = $request->query('class')) {
-            $query->where('class', $class);
+        if ($classId = $request->query('class_id')) {
+            $query->where('class_id', $classId);
         }
 
         // Filter by status
@@ -50,7 +50,7 @@ class StudentController extends Controller
             $query->where('status', $status);
         }
 
-        $students = $query->orderBy('created_at', 'desc')->paginate(15);
+        $students = $query->with(['schoolClass', 'section'])->orderBy('created_at', 'desc')->paginate(15);
 
         return response()->json($students);
     }
@@ -60,7 +60,7 @@ class StudentController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $student = Student::with(['guardians', 'documents', 'tenant'])
+        $student = Student::with(['guardians', 'documents', 'tenant', 'schoolClass', 'section'])
             ->findOrFail($id);
 
         // Check tenant access
@@ -91,8 +91,8 @@ class StudentController extends Controller
             'phone' => 'nullable|string|max:20',
             'email' => 'nullable|email',
             'admission_date' => 'nullable|date',
-            'class' => 'nullable|string|max:50',
-            'section' => 'nullable|string|max:20',
+            'class_id' => 'nullable|exists:classes,id',
+            'section_id' => 'nullable|exists:sections,id',
             'roll_number' => 'nullable|string|max:20',
             'status' => 'nullable|in:active,inactive,graduated,transferred',
         ]);
@@ -134,8 +134,8 @@ class StudentController extends Controller
             'address' => 'nullable|string',
             'phone' => 'nullable|string|max:20',
             'email' => 'nullable|email',
-            'class' => 'nullable|string|max:50',
-            'section' => 'nullable|string|max:20',
+            'class_id' => 'nullable|exists:classes,id',
+            'section_id' => 'nullable|exists:sections,id',
             'roll_number' => 'nullable|string|max:20',
             'status' => 'nullable|in:active,inactive,graduated,transferred',
         ]);

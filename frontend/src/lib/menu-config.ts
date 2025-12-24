@@ -198,14 +198,88 @@ export const MENU_CONFIG: Record<string, MenuItem[]> = {
     ],
     "School Owner": [
         { title: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-        { title: "Students", href: "/dashboard/students", icon: GraduationCap },
-        { title: "Academics", href: "/dashboard/academics", icon: BookOpen },
-        { title: "HR & Staff", href: "/dashboard/staff", icon: Users },
-        { title: "Attendance", href: "/dashboard/attendance", icon: Calendar },
-        { title: "Fees & Accounts", href: "/dashboard/fees", icon: CreditCard },
-        { title: "Exams", href: "/dashboard/exams", icon: FileText },
-        { title: "Transport", href: "/dashboard/transport", icon: Truck },
-        { title: "Library", href: "/dashboard/library", icon: Library },
+        {
+            title: "Students",
+            href: "/dashboard/students",
+            icon: GraduationCap,
+            submenu: [
+                { title: "Student List", href: "/dashboard/students" },
+                { title: "Admission", href: "/dashboard/students/admission" },
+                { title: "ID Cards", href: "/dashboard/students/id-cards" },
+                { title: "Promotions", href: "/dashboard/students/promotions" },
+            ]
+        },
+        {
+            title: "Academics",
+            href: "/dashboard/academics",
+            icon: BookOpen,
+            submenu: [
+                { title: "Configuration", href: "/dashboard/academics/setup" },
+                { title: "Class Routine", href: "/dashboard/academics/routine" },
+                { title: "Syllabus", href: "/dashboard/academics/syllabus" },
+            ]
+        },
+        {
+            title: "HR & Staff",
+            href: "/dashboard/staff",
+            icon: Users,
+            submenu: [
+                { title: "Staff Directory", href: "/dashboard/staff" },
+                { title: "Payroll", href: "/dashboard/staff/payroll" },
+                { title: "Leave Management", href: "/dashboard/staff/leaves" },
+            ]
+        },
+        {
+            title: "Attendance",
+            href: "/dashboard/attendance",
+            icon: Calendar,
+            submenu: [
+                { title: "Student Attendance", href: "/dashboard/attendance/students" },
+                { title: "Staff Attendance", href: "/dashboard/attendance/staff" },
+                { title: "Reports", href: "/dashboard/attendance/reports" },
+            ]
+        },
+        {
+            title: "Fees & Accounts",
+            href: "/dashboard/fees",
+            icon: CreditCard,
+            submenu: [
+                { title: "Collect Fees", href: "/dashboard/fees/collect" },
+                { title: "Invoices", href: "/dashboard/fees/invoices" },
+                { title: "Expenses", href: "/dashboard/fees/expenses" },
+                { title: "Reports", href: "/dashboard/fees/reports" },
+            ]
+        },
+        {
+            title: "Exams",
+            href: "/dashboard/exams",
+            icon: FileText,
+            submenu: [
+                { title: "Exam Setup", href: "/dashboard/exams/setup" },
+                { title: "Marks Entry", href: "/dashboard/exams/marks" },
+                { title: "Admit Cards", href: "/dashboard/exams/admit-cards" },
+                { title: "Results", href: "/dashboard/exams/results" },
+            ]
+        },
+        {
+            title: "Transport",
+            href: "/dashboard/transport",
+            icon: Truck,
+            submenu: [
+                { title: "Routes", href: "/dashboard/transport/routes" },
+                { title: "Vehicles", href: "/dashboard/transport/vehicles" },
+                { title: "Assign", href: "/dashboard/transport/assign" },
+            ]
+        },
+        {
+            title: "Library",
+            href: "/dashboard/library",
+            icon: Library,
+            submenu: [
+                { title: "Book List", href: "/dashboard/library/books" },
+                { title: "Issue / Return", href: "/dashboard/library/circulation" },
+            ]
+        },
         {
             title: "Settings",
             href: "/dashboard/settings",

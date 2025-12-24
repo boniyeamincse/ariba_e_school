@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
@@ -23,16 +23,16 @@ class Student extends Model
         'phone',
         'email',
         'admission_date',
-        'class',
-        'section',
+        'class_id', // Changed from 'class'
+        'section_id', // Changed from 'section'
         'roll_number',
         'photo_url',
         'status',
     ];
 
     protected $casts = [
-        'date_of_birth' => 'date',
         'admission_date' => 'date',
+        'date_of_birth' => 'date',
     ];
 
     public function tenant()
@@ -40,14 +40,21 @@ class Student extends Model
         return $this->belongsTo(Tenant::class);
     }
 
+    // Relationship to Academic Class
+    public function schoolClass()
+    {
+        return $this->belongsTo(SchoolClass::class, 'class_id');
+    }
+
+    // Relationship to Section
+    public function section()
+    {
+        return $this->belongsTo(Section::class, 'section_id');
+    }
+
     public function guardians()
     {
         return $this->hasMany(Guardian::class);
-    }
-
-    public function documents()
-    {
-        return $this->hasMany(StudentDocument::class);
     }
 
     public function primaryGuardian()
@@ -55,8 +62,8 @@ class Student extends Model
         return $this->hasOne(Guardian::class)->where('is_primary', true);
     }
 
-    public function getFullNameAttribute(): string
+    public function documents()
     {
-        return "{$this->first_name} {$this->last_name}";
+        return $this->hasMany(StudentDocument::class);
     }
 }

@@ -72,6 +72,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/schools/{id}/approve', [\App\Http\Controllers\SchoolRegistrationController::class, 'approve']);
     Route::put('/schools/{id}/reject', [\App\Http\Controllers\SchoolRegistrationController::class, 'reject']);
     Route::post('/schools/{id}/upload', [\App\Http\Controllers\SchoolRegistrationController::class, 'uploadFile']);
+
+    // Academic Setup
+    Route::get('/academics/hierarchy', [\App\Http\Controllers\Api\AcademicController::class, 'index']);
+    Route::post('/academics/classes', [\App\Http\Controllers\Api\AcademicController::class, 'storeClass']);
+    Route::post('/academics/sections', [\App\Http\Controllers\Api\AcademicController::class, 'storeSection']);
+    Route::post('/academics/subjects', [\App\Http\Controllers\Api\AcademicController::class, 'storeSubject']);
 });
 
 // Public Routes (No Auth)
