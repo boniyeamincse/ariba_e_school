@@ -1,7 +1,71 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { School, ArrowRight, Loader2 } from "lucide-react";
+import { School, Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 export default function Login() {
+    const router = useRouter();
+    const [loading, setLoading] = useState(false);
+    const [formData, setFormData] = useState({
+        school: "",
+        email: "",
+        password: "",
+    });
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (!formData.email || !formData.password) {
+            toast.error("Please enter email and password");
+            return;
+        }
+
+        setLoading(true);
+        try {
+            const response = await fetch("http://localhost:8000/api/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: formData.email,
+                    password: formData.password,
+                    domain: formData.school || undefined, // Optional school domain
+                }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Store token and user data
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("user", JSON.stringify(data.user));
+
+                toast.success("Login successful!");
+
+                // Redirect based on user role
+                const roles = data.user.roles || [];
+                const roleNames = roles.map((r: any) => r.name || r);
+
+                if (roleNames.some((r: string) => r.startsWith('SAAS_') || r === 'Super Admin')) {
+                    router.push("/admin/dashboard");
+                } else {
+                    router.push("/dashboard");
+                }
+            } else {
+                toast.error(data.message || "Invalid credentials");
+            }
+        } catch (error) {
+            console.error("Login error:", error);
+            toast.error("Network error. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -23,7 +87,7 @@ export default function Login() {
 
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="bg-white dark:bg-zinc-900 py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-zinc-200 dark:border-zinc-800">
-                    <form className="space-y-6" action="#" method="POST">
+                    <form className="space-y-6" onSubmit={handleSubmit}>
 
                         {/* School Domain */}
                         <div>
@@ -36,12 +100,15 @@ export default function Login() {
                                     name="school"
                                     type="text"
                                     placeholder="e.g. dhakaideal"
-                                    className="block w-full rounded-md border-0 py-2 pr-16 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6 dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white"
+                                    value={formData.school}
+                                    onChange={(e) => setFormData({ ...formData, school: e.target.value })}
+                                    className="block w-full rounded-md border-0 py-2 pl-3 pr-20 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6 dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white"
                                 />
                                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                                     <span className="text-zinc-500 sm:text-sm dark:text-zinc-400">.ariba.app</span>
                                 </div>
                             </div>
+                            <p className="mt-1 text-xs text-zinc-500">Leave empty for platform admin login</p>
                         </div>
 
                         <div>
@@ -55,7 +122,9 @@ export default function Login() {
                                     type="email"
                                     autoComplete="email"
                                     required
-                                    className="block w-full rounded-md border-0 py-2 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6 dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white"
+                                    value={formData.email}
+                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                    className="block w-full rounded-md border-0 py-2 pl-3 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6 dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white"
                                 />
                             </div>
                         </div>
@@ -71,7 +140,9 @@ export default function Login() {
                                     type="password"
                                     autoComplete="current-password"
                                     required
-                                    className="block w-full rounded-md border-0 py-2 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6 dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white"
+                                    value={formData.password}
+                                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                                    className="block w-full rounded-md border-0 py-2 pl-3 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6 dark:bg-zinc-800 dark:ring-zinc-700 dark:text-white"
                                 />
                             </div>
                         </div>
@@ -99,13 +170,42 @@ export default function Login() {
                         <div>
                             <button
                                 type="submit"
-                                className="flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+                                disabled={loading}
+                                className="flex w-full justify-center items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                Sign in
+                                {loading ? (
+                                    <>
+                                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                                        Signing in...
+                                    </>
+                                ) : (
+                                    "Sign in"
+                                )}
                             </button>
                         </div>
                     </form>
 
+                    <div className="mt-6">
+                        <div className="relative">
+                            <div className="absolute inset-0 flex items-center">
+                                <div className="w-full border-t border-zinc-300 dark:border-zinc-700" />
+                            </div>
+                            <div className="relative flex justify-center text-sm">
+                                <span className="bg-white dark:bg-zinc-900 px-2 text-zinc-500 dark:text-zinc-400">
+                                    Platform admin?
+                                </span>
+                            </div>
+                        </div>
+
+                        <div className="mt-4">
+                            <Link
+                                href="/admin/login"
+                                className="flex w-full justify-center rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-white shadow-sm hover:bg-zinc-50 dark:hover:bg-zinc-700"
+                            >
+                                Go to Admin Login
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

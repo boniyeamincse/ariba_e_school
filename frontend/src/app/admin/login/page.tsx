@@ -33,12 +33,12 @@ export default function SuperAdminLogin() {
                 throw new Error(data.message || "Login failed");
             }
 
-            // Store token (In real app, use secure cookie or HttpOnly)
-            localStorage.setItem("token", data.access_token);
+            // Store token
+            localStorage.setItem("token", data.token || data.access_token);
             localStorage.setItem("user", JSON.stringify(data.user));
 
-            // Redirect
-            router.push("/dashboard");
+            // Redirect to admin dashboard
+            router.push("/admin/dashboard");
         } catch (err: any) {
             setError(err.message);
         } finally {
