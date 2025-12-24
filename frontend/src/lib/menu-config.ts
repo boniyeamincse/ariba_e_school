@@ -11,7 +11,8 @@ import {
     FileText,
     MessageSquare,
     Truck,
-    Library
+    Library,
+    BarChart3
 } from "lucide-react";
 
 export type MenuItem = {
@@ -77,6 +78,17 @@ export const MENU_CONFIG: Record<string, MenuItem[]> = {
                 { title: "Settings", href: "/admin/dashboard/system/settings" }
             ]
         },
+        {
+            title: "Reports",
+            href: "/admin/dashboard/reports",
+            icon: BarChart3,
+            submenu: [
+                { title: "Revenue Report", href: "/admin/dashboard/reports/revenue" },
+                { title: "School Growth", href: "/admin/dashboard/reports/growth" },
+                { title: "User Activity", href: "/admin/dashboard/reports/activity" },
+                { title: "Export Data", href: "/admin/dashboard/reports/export" }
+            ]
+        },
     ],
     "SAAS_SUPER_ADMIN": [
         { title: "Overview", href: "/admin/dashboard", icon: LayoutDashboard },
@@ -131,6 +143,17 @@ export const MENU_CONFIG: Record<string, MenuItem[]> = {
                 { title: "Error Logs", href: "/admin/dashboard/system/logs" },
                 { title: "Integrations", href: "/admin/dashboard/system/integrations" },
                 { title: "Settings", href: "/admin/dashboard/system/settings" }
+            ]
+        },
+        {
+            title: "Reports",
+            href: "/admin/dashboard/reports",
+            icon: BarChart3,
+            submenu: [
+                { title: "Revenue Report", href: "/admin/dashboard/reports/revenue" },
+                { title: "School Growth", href: "/admin/dashboard/reports/growth" },
+                { title: "User Activity", href: "/admin/dashboard/reports/activity" },
+                { title: "Export Data", href: "/admin/dashboard/reports/export" }
             ]
         },
     ],
