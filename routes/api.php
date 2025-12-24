@@ -31,6 +31,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/payments/initiate', [\App\Http\Controllers\PaymentController::class, 'initiate']);
     Route::get('/payments/stripe-config', [\App\Http\Controllers\PaymentController::class, 'getStripeConfig']);
     Route::get('/transactions', [\App\Http\Controllers\PaymentController::class, 'transactions']);
+
+    // Domains
+    Route::get('/domains', [\App\Http\Controllers\DomainController::class, 'index']);
+    Route::post('/domains', [\App\Http\Controllers\DomainController::class, 'store']);
+    Route::post('/domains/{domain}/verify', [\App\Http\Controllers\DomainController::class, 'verify']);
+    Route::post('/domains/{domain}/set-primary', [\App\Http\Controllers\DomainController::class, 'setPrimary']);
+    Route::delete('/domains/{domain}', [\App\Http\Controllers\DomainController::class, 'destroy']);
 });
 
 // Webhooks (no auth required)

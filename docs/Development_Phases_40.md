@@ -18,7 +18,7 @@ This document outlines the granular 40-phase development plan for the Ariba SaaS
 | **07** | **Subscription Logic** | Plan creation (Standard/Premium), Trial management (14-day auto-expiry). | ✅ **Done** |
 | **08** | **Billing & Invoicing** | Invoice generation for schools, PDF downloads. | ✅ **Done** |
 | **09** | **Payment Gateway** | bKash/Stripe integration for subscription collections. | ✅ **Done** |
-| **10** | **Domain Management** | Custom domain mapping (e.g., `school.com` -> `school.aribasaas.com`). | ⭕ Pending |
+| **10** | **Domain Management** | Custom domain mapping (e.g., `school.com` -> `school.aribasaas.com`). | ✅ **Done** |
 
 ## 🔴 Phase 11-15: Academic Core (School Administration)
 | Phase | Module | Description | Status |
