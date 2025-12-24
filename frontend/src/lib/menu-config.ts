@@ -30,9 +30,10 @@ export const MENU_CONFIG: Record<string, MenuItem[]> = {
             icon: School,
             submenu: [
                 { title: "All Schools", href: "/admin/dashboard/tenants" },
+                { title: "Add New School", href: "/admin/dashboard/schools/create" },
+                { title: "Pending Approvals", href: "/admin/dashboard/schools/pending" },
                 { title: "Plans & Subscriptions", href: "/admin/dashboard/tenants/plans" },
                 { title: "Domains", href: "/admin/dashboard/tenants/domains" },
-                { title: "Tenant Usage", href: "/admin/dashboard/tenants/usage" }
             ]
         },
         {
@@ -85,9 +86,10 @@ export const MENU_CONFIG: Record<string, MenuItem[]> = {
             icon: School,
             submenu: [
                 { title: "All Schools", href: "/admin/dashboard/tenants" },
+                { title: "Add New School", href: "/admin/dashboard/schools/create" },
+                { title: "Pending Approvals", href: "/admin/dashboard/schools/pending" },
                 { title: "Plans & Subscriptions", href: "/admin/dashboard/tenants/plans" },
                 { title: "Domains", href: "/admin/dashboard/tenants/domains" },
-                { title: "Tenant Usage", href: "/admin/dashboard/tenants/usage" }
             ]
         },
         {
@@ -140,9 +142,9 @@ export const MENU_CONFIG: Record<string, MenuItem[]> = {
             icon: School,
             submenu: [
                 { title: "All Schools", href: "/admin/dashboard/tenants" },
+                { title: "Add New School", href: "/admin/dashboard/schools/create" },
+                { title: "Pending Approvals", href: "/admin/dashboard/schools/pending" },
                 { title: "Plans & Subscriptions", href: "/admin/dashboard/tenants/plans" },
-                { title: "Domains", href: "/admin/dashboard/tenants/domains" },
-                { title: "Tenant Usage", href: "/admin/dashboard/tenants/usage" }
             ]
         },
         { title: "SMS", href: "/admin/dashboard/sms", icon: MessageSquare }, // Simplified
