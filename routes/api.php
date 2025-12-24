@@ -26,4 +26,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/invoices', [\App\Http\Controllers\InvoiceController::class, 'store']);
     Route::post('/invoices/{invoice}/mark-paid', [\App\Http\Controllers\InvoiceController::class, 'markPaid']);
     Route::get('/invoices/{invoice}/download', [\App\Http\Controllers\InvoiceController::class, 'download']);
+
+    // Payments
+    Route::post('/payments/initiate', [\App\Http\Controllers\PaymentController::class, 'initiate']);
+    Route::get('/payments/stripe-config', [\App\Http\Controllers\PaymentController::class, 'getStripeConfig']);
+    Route::get('/transactions', [\App\Http\Controllers\PaymentController::class, 'transactions']);
 });
+
+// Webhooks (no auth required)
+Route::post('/webhooks/stripe', [\App\Http\Controllers\PaymentController::class, 'stripeWebhook']);
+Route::post('/webhooks/bkash', [\App\Http\Controllers\PaymentController::class, 'bkashCallback']);
