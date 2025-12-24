@@ -41,12 +41,16 @@ A **multi-tenant, role-based** School Management System built for the Bangladesh
 
 ## 🔗 Login Portals
 
-| Portal | URL | Theme | Users |
-|:---|:---|:---:|:---|
-| **SaaS Admin** | `/admin/login` | Dark | Platform Owners |
-| **School Admin** | `/school/login` | 🟢 Emerald | Principals, School Admins |
-| **Student** | `/student/login` | 🔵 Blue | Students |
-| **Staff** | `/staff/login` | 🟣 Purple | Teachers, Accountants |
+| Portal | URL | Purpose |
+|:---|:---|:---|
+| **Admin Console** | `/admin/login` | SaaS Platform Administrators only |
+| **User Login** | `/login` | All tenant users (Schools, Teachers, Students) |
+
+**Smart Login Features:**
+- 📧 Email-first flow (enter email → auto-detect user type)
+- 🏫 School domain auto-detection
+- 🔀 Role-based redirect to correct dashboard
+- 🔒 Admin role validation on admin console
 
 ---
 
