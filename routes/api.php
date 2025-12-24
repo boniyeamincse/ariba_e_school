@@ -38,6 +38,16 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/domains/{domain}/verify', [\App\Http\Controllers\DomainController::class, 'verify']);
     Route::post('/domains/{domain}/set-primary', [\App\Http\Controllers\DomainController::class, 'setPrimary']);
     Route::delete('/domains/{domain}', [\App\Http\Controllers\DomainController::class, 'destroy']);
+
+    // Students
+    Route::get('/students', [\App\Http\Controllers\StudentController::class, 'index']);
+    Route::post('/students', [\App\Http\Controllers\StudentController::class, 'store']);
+    Route::get('/students/{student}', [\App\Http\Controllers\StudentController::class, 'show']);
+    Route::put('/students/{student}', [\App\Http\Controllers\StudentController::class, 'update']);
+    Route::delete('/students/{student}', [\App\Http\Controllers\StudentController::class, 'destroy']);
+    Route::post('/students/{student}/guardians', [\App\Http\Controllers\StudentController::class, 'addGuardian']);
+    Route::post('/students/{student}/documents', [\App\Http\Controllers\StudentController::class, 'uploadDocument']);
+    Route::post('/students/{student}/photo', [\App\Http\Controllers\StudentController::class, 'uploadPhoto']);
 });
 
 // Webhooks (no auth required)

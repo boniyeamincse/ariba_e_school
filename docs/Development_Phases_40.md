@@ -22,11 +22,11 @@ This document outlines the granular 40-phase development plan for the Ariba SaaS
 
 > **Total Tests: 16 passed (29 assertions)**
 
-## 🔴 Phase 11-15: Academic Core (School Administration)
-| Phase | Module | Description | Status |
-| :--- | :--- | :--- | :--- |
-| **11** | **Student Info System** | Detailed student profiles, guardians, document uploads. | ⭕ Pending |
-| **12** | **Admission Module** | Online admission forms, inquiry tracking, merit list generation. | ⭕ Pending |
+## 🟡 Phase 11-15: Academic Core (School Administration)
+| Phase | Module | Description | Tests | Status |
+| :--- | :--- | :--- | :---: | :--- |
+| **11** | **Student Info System** | Detailed student profiles, guardians, document uploads. | 5 ✅ | ✅ **Done** |
+| **12** | **Admission Module** | Online admission forms, inquiry tracking, merit list generation. | - | ⭕ Pending |
 | **13** | **Academic Setup** | Class, Section, Subject, & Topic hierarchy configuration. | ⭕ Pending |
 | **14** | **Class Routine** | Conflict-free schedule generator, teacher allocation. | ⭕ Pending |
 | **15** | **Attendance System** | Daily attendance (Student/Staff), Biometric device API integration. | ⭕ Pending |
