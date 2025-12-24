@@ -22,16 +22,21 @@ This document outlines the granular 40-phase development plan for the Ariba SaaS
 
 > **Total Tests: 16 passed (29 assertions)**
 
-## 🟡 Phase 11-15: Academic Core (School Administration)
+## 🟢 Phase 06b: Advanced Analytics & Reporting
+| Phase | Module | Description | Status |
+| :--- | :--- | :--- | :--- |
+| **06b** | **SaaS Reports** | Revenue Growth Charts, Tenant Acquisition Graphs, Exportable Data. | ✅ **Done** |
+
+## 🟡 Phase 11-15: Academic Core & School Experience
 | Phase | Module | Description | Tests | Status |
 | :--- | :--- | :--- | :---: | :--- |
-| **11** | **Student Info System** | Detailed student profiles, guardians, document uploads. | 5 ✅ | ✅ **Done** |
+| **11** | **School Dashboard 2.0** | Interactive KPIs, Quick Actions, Attendance/Fee Widgets. | - | ✅ **Done** |
+| **11b** | **Student Info System** | Detailed student profiles, guardians, document uploads. | 5 ✅ | ✅ **Done** |
 | **12** | **Admission Module** | Online admission forms, inquiry tracking, merit list generation. | 5 ✅ | ✅ **Done** |
 | **12b** | **School Registration** | Multi-step registration form, SaaS approval workflow. | 4 ✅ | ✅ **Done** |
-| **13** | **Academic Setup** | Class, Section, Subject, & Topic hierarchy configuration. | - | ⭕ Pending |
-| **13** | **Academic Setup** | Class, Section, Subject, & Topic hierarchy configuration. | ⭕ Pending |
-| **14** | **Class Routine** | Conflict-free schedule generator, teacher allocation. | ⭕ Pending |
-| **15** | **Attendance System** | Daily attendance (Student/Staff), Biometric device API integration. | ⭕ Pending |
+| **13** | **Academic Setup** | Class, Section, Subject, & Topic hierarchy configuration. | - | 🚀 **Next Up** |
+| **14** | **Class Routine** | Conflict-free schedule generator, teacher allocation. | - | ⭕ Pending |
+| **15** | **Attendance System** | Daily attendance (Student/Staff). *Dashboard Widgets Ready*. | - | 🟡 **UI Ready** |
 
 ## 🔴 Phase 16-20: Evaluation & Grading
 | Phase | Module | Description | Status |

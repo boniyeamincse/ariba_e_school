@@ -206,7 +206,20 @@ export const MENU_CONFIG: Record<string, MenuItem[]> = {
         { title: "Exams", href: "/dashboard/exams", icon: FileText },
         { title: "Transport", href: "/dashboard/transport", icon: Truck },
         { title: "Library", href: "/dashboard/library", icon: Library },
-        { title: "Settings", href: "/dashboard/settings", icon: Settings },
+        {
+            title: "Settings",
+            href: "/dashboard/settings",
+            icon: Settings,
+            submenu: [
+                { title: "System Settings", href: "/dashboard/settings/system" },
+                { title: "Website Settings", href: "/dashboard/settings/website" },
+                { title: "School Settings", href: "/dashboard/settings/school" },
+                { title: "Payment Settings", href: "/dashboard/settings/payment" },
+                { title: "Language Settings", href: "/dashboard/settings/language" },
+                { title: "SMTP Settings", href: "/dashboard/settings/smtp" },
+                { title: "About", href: "/dashboard/settings/about" },
+            ]
+        },
     ],
     "Teacher": [
         { title: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
